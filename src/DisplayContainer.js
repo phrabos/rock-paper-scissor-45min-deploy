@@ -4,34 +4,48 @@ import Controls from './Controls';
 const DisplayContainer = () => {
   const [choice, setChoice] = useState('');
   const [choiceSpan, setChoiceSpan] = useState('');
-  const [computer, setComputer] = useState('');
+  const [computer, setComputer] = useState(Math.floor(Math.random() * 3));
   const [computerSpan, setComputerSpan] = useState('');
   const [outcome, setOutcome] = useState('');
 
-  useEffect(() => {
-    if(computer === 0) setComputerSpan('rock')
-    if(computer === 1) setComputerSpan('paper')
-    if(computer === 2) setComputerSpan('scissor')
+  // useEffect(() => {
+  //   if(computer === 0) setComputerSpan('rock')
+  //   if(computer === 1) setComputerSpan('paper')
+  //   if(computer === 2) setComputerSpan('scissor')
 
-    if(computer === 0 && choice === 'rock') setOutcome('draw')
-    else if(computer === 0 && choice === 'paper') setOutcome('win')
-    else if(computer === 0 && choice === 'scissors') setOutcome('lose')
-    else if(computer === 1 && choice === 'rock') setOutcome('lose')
-    else if(computer === 1 && choice === 'paper') setOutcome('draw')
-    else if(computer === 1 && choice === 'scissor') setOutcome('win')
-    else if(computer === 2 && choice === 'rock') setOutcome('win')
-    else if(computer === 2 && choice === 'paper') setOutcome('lose')
-    else if(computer === 2 && choice === 'scissor') setOutcome('draw')
-  }, [computer])
+  //   if(computer === 0 && choice === 'rock') setOutcome('draw')
+  //   else if(computer === 0 && choice === 'paper') setOutcome('win')
+  //   else if(computer === 0 && choice === 'scissors') setOutcome('lose')
+  //   else if(computer === 1 && choice === 'rock') setOutcome('lose')
+  //   else if(computer === 1 && choice === 'paper') setOutcome('draw')
+  //   else if(computer === 1 && choice === 'scissor') setOutcome('win')
+  //   else if(computer === 2 && choice === 'rock') setOutcome('win')
+  //   else if(computer === 2 && choice === 'paper') setOutcome('lose')
+  //   else if(computer === 2 && choice === 'scissor') setOutcome('draw')
+  // }, [computer])
 
   const handleRadio = (e) => {
     setChoice(e.target.value);
+    
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('button', choice);
     setChoiceSpan(choice);
+
+    if(computer === 0) setComputerSpan('rock')
+    if(computer === 1) setComputerSpan('paper')
+    if(computer === 2) setComputerSpan('scissor')
+
+    if(computer === 0 && choice === 'paper') setOutcome('win')
+    else if(computer === 1 && choice === 'scissor') setOutcome('win')
+    else if(computer === 2 && choice === 'rock') setOutcome('win')
+    else if(computer === 0 && choice === 'scissors') setOutcome('lose')
+    else if(computer === 1 && choice === 'rock') setOutcome('lose')
+    else if(computer === 2 && choice === 'paper') setOutcome('lose')
+    else setOutcome('draw')
+
     setComputer(Math.floor(Math.random() * 3))
   }
 
